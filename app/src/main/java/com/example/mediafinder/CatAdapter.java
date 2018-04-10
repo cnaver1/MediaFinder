@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,11 +20,13 @@ import java.util.List;
 public class CatAdapter extends ArrayAdapter {
     Categories categories;
     String[] items;
+    ArrayList list;
 
-    public CatAdapter(Context context, int resource, Object[] objects, Categories categories) {
+    public CatAdapter(Context context, int resource, Object[] objects, Categories categories, ArrayList<String> list) {
         super(context, resource, objects);
         items = (String[]) objects;
         this.categories = categories;
+        this.list = list;
     }
 
     public View getView(final int i, View view, ViewGroup viewGroup){
@@ -33,8 +36,8 @@ public class CatAdapter extends ArrayAdapter {
         RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.sideScroll);
         LinearLayoutManager layoutManager = new LinearLayoutManager(categories.getActivity());
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        if(recyclerView != null)
-            recyclerView.setAdapter(new CatItemsAdapter(items));
+        //if(recyclerView != null)
+        recyclerView.setAdapter(new CatItemsAdapter(list));
         recyclerView.setLayoutManager(layoutManager);
         return view;
     }

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +17,9 @@ import java.util.List;
 
 public class CatItemsAdapter extends RecyclerView.Adapter {
 
-    String[] list;
+    ArrayList<String> list;
 
-    CatItemsAdapter(String[] arr){
-        list = arr;
-    }
+    CatItemsAdapter(ArrayList<String> arr){ list = arr; }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -30,7 +29,9 @@ public class CatItemsAdapter extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {    }
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+
+    }
 
     @Override
     public int getItemCount() {
