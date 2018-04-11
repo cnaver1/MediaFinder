@@ -1,6 +1,7 @@
 package com.example.mediafinder;
 
 import android.content.Context;
+import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +20,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /**
@@ -47,27 +52,26 @@ public class Search extends Fragment {
             @Override
             public void onClick(View view) {
                 ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
-                }
+            }
         });
         db.getReference("media").child("1");
-        DatabaseReference ref = db.getReference("media");
-        ref.removeValue();
-        ref.push().setValue(new Media("1", "This is the first one"));
-        ref.push().setValue(new Media("2", "This is the second one"));
-        ref.push().setValue(new Media("3", "This is the third one"));
+        final DatabaseReference ref = db.getReference("media");
         final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.searchList, list);
         lv.setAdapter(searchAdapter);
         criteria = view.findViewById(R.id.criteria);
+
+        //This is the code that searches for the media based off of the entered text
         view.findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 searchAdapter.clear();
-                db.getReference("media").addChildEventListener(new ChildEventListener() {
+                final String search = criteria.getText().toString().trim().toLowerCase();
+                System.out.println(search);
+                ref.child("movies").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
 
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                        if(dataSnapshot.getValue(Media.class).getName().equals(criteria.getText().toString()))
-                            searchAdapter.add(dataSnapshot.getValue(Media.class));
+                        searchAdapter.add(dataSnapshot.getValue(Movie.class));
                     }
 
                     @Override
@@ -90,6 +94,113 @@ public class Search extends Fragment {
 
                     }
                 });
+                ref.child("books").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
+
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        searchAdapter.add(dataSnapshot.getValue(Book.class));
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                ref.child("games").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
+
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                        searchAdapter.add(dataSnapshot.getValue(Game.class));
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        });
+
+        //This is the code to correctly upload the media to the firebase database
+        view.findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ref.removeValue();
+                AssetManager assetManager = context.getAssets();
+                try {
+                    BufferedReader bufferedReader2 = new BufferedReader(new InputStreamReader(getContext().getAssets().open("IMDB's Top 250.txt")));
+                    String line;
+                    String[] lines;
+                    String line2;
+                    String string;
+                    String[] arr;
+                    String string2;
+                    while ((line = bufferedReader2.readLine()) != null) {
+                        string = "";
+                        lines = line.split("\\.");
+                        for(int i = 1; i < lines.length; i++)
+                            string += lines[i] + ".";
+                        line2 = bufferedReader2.readLine();
+                        arr = string.split("\\(");
+                        ref.child("movies").push().setValue(new Movie(arr[0].trim(), arr[1].split("\\)")[0], line2, lines[0]));
+                        bufferedReader2.readLine();
+                    }
+                    bufferedReader2 = new BufferedReader(new InputStreamReader(getContext().getAssets().open("Goodreads' Best Books Ever.txt")));
+                    while ((line = bufferedReader2.readLine()) != null) {
+                        lines = line.split("\\(");
+                        if(lines.length == 1)
+                            string2 = "Not part of a series";
+                        else
+                            string2 = lines[1];
+                        line2 = bufferedReader2.readLine();
+                        string = bufferedReader2.readLine();
+                        arr = string.split("—");
+                        ref.child("books").push().setValue(new Book(lines[0], string2.split("\\)")[0], line2, arr[0].split(" ")[0], arr[1].trim().split(" ")[0]));
+                        bufferedReader2.readLine();
+                    }
+                    bufferedReader2 = new BufferedReader(new InputStreamReader(getContext().getAssets().open("Wikipedia's list of First Person Shooters.txt")));
+                    while ((line = bufferedReader2.readLine()) != null) {
+                        ref.child("games").push().setValue(new Game(line, bufferedReader2.readLine(), bufferedReader2.readLine(),bufferedReader2.readLine()));
+                        bufferedReader2.readLine();
+                    }
+                    bufferedReader2.close();
+                } catch (FileNotFoundException ex) {
+                    System.out.println(
+                            "Unable to open file");
+                } catch (IOException ex) {
+                    System.out.println(
+                            "Error reading file");
+                }
             }
         });
     }
