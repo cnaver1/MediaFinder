@@ -32,7 +32,17 @@ public class Book implements Media {
 
     @Override
     public void setResults(View view) {
-        ((TextView) view.findViewById(R.id.resultsText)).setText(name);
+        ((TextView) view.findViewById(R.id.nameText)).setText(name);
+        ((TextView) view.findViewById(R.id.mediaText)).setText("Book");
+    }
+
+    @Override
+    public void setInfo(View view) {
+        ((TextView) view.findViewById(R.id.info_name)).setText(name);
+        ((TextView) view.findViewById(R.id.info_type)).setText("Book");
+        ((TextView) view.findViewById(R.id.info_topLine)).setText("Author: " + author);
+        ((TextView) view.findViewById(R.id.info_middleLine)).setText("Series: " + series);
+        ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Rating: " + rating + "/5.00 (" + numRatings + " ratings)");
     }
 
     public String getSeries() {return series;}

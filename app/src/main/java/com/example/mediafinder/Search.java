@@ -66,7 +66,6 @@ public class Search extends Fragment {
             public void onClick(View view) {
                 searchAdapter.clear();
                 final String search = criteria.getText().toString().trim().toLowerCase();
-                System.out.println(search);
                 ref.child("movies").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
 
                     @Override

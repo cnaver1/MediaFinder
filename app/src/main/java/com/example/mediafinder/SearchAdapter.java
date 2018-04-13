@@ -35,6 +35,7 @@ public class SearchAdapter extends ArrayAdapter {
             @Override
             public void onClick(View view) {
                 context.startActivity(new Intent(context, MoreInfo.class));
+                MoreInfo.media = (Media) getItem(i);
             }
         });
         return view;

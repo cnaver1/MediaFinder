@@ -9,9 +9,13 @@ import android.support.annotation.Nullable;
  */
 
 public class MoreInfo extends Activity {
+
+    public static Media media;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.more_info);
+        media.setInfo(findViewById(android.R.id.content));
     }
 }

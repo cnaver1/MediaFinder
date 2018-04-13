@@ -3,8 +3,6 @@ package com.example.mediafinder;
 import android.view.View;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by thevs on 4/10/2018.
  */
@@ -31,7 +29,16 @@ public class Movie implements Media{
 
     @Override
     public void setResults(View view) {
-        ((TextView) view.findViewById(R.id.resultsText)).setText(name);
+        ((TextView) view.findViewById(R.id.nameText)).setText(name);
+        ((TextView) view.findViewById(R.id.mediaText)).setText("Movie");
+    }
+
+    public void setInfo(View view){
+        ((TextView) view.findViewById(R.id.info_name)).setText(name);
+        ((TextView) view.findViewById(R.id.info_type)).setText("Movie");
+        ((TextView) view.findViewById(R.id.info_topLine)).setText("Year Released: " + year);
+        ((TextView) view.findViewById(R.id.info_middleLine)).setText("IMDB Movie Ranking: " + ranking);
+        ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Rating: " + rating + "/10.0");
     }
 
     public String getYear(){return year;}

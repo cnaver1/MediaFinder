@@ -32,7 +32,17 @@ public class Game implements Media {
 
     @Override
     public void setResults(View view) {
-        ((TextView) view.findViewById(R.id.resultsText)).setText(name);
+        ((TextView) view.findViewById(R.id.nameText)).setText(name);
+        ((TextView) view.findViewById(R.id.mediaText)).setText("Game");
+    }
+
+    @Override
+    public void setInfo(View view) {
+        ((TextView) view.findViewById(R.id.info_name)).setText(name);
+        ((TextView) view.findViewById(R.id.info_type)).setText("Game");
+        ((TextView) view.findViewById(R.id.info_topLine)).setText("Release Date: " + releaseDate);
+        ((TextView) view.findViewById(R.id.info_middleLine)).setText("Developer: " + developer);
+        ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Platform(s): " + platform);
     }
 
     public String getDeveloper() {return developer;}

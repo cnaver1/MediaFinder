@@ -9,4 +9,5 @@ import android.view.View;
 public interface Media {
     String getName();
     void setResults(View view);
+    void setInfo(View view);
 }
