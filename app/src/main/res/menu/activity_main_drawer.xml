@@ -9,17 +9,17 @@
             android:icon="@android:drawable/ic_search_category_default"
             android:title="Search" />
         <item
-            android:id="@+id/nav_categories"
-            android:icon="@mipmap/categories"
-            android:title="Categories" />
+            android:id="@+id/nav_movies"
+            android:icon="@mipmap/movie"
+            android:title="Movies" />
         <item
-            android:id="@+id/nav_favorites"
-            android:icon="@android:drawable/btn_star"
-            android:title="Favorites" />
+            android:id="@+id/nav_books"
+            android:icon="@mipmap/book"
+            android:title="Books" />
         <item
-            android:id="@+id/nav_recommended"
-            android:icon="@mipmap/check"
-            android:title="Recommendations" />
+            android:id="@+id/nav_games"
+            android:icon="@mipmap/game"
+            android:title="Games" />
     </group>
 
         <item android:title="Account">

@@ -78,14 +78,14 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_search:
                 fragment = new Search();
                 break;
-            case R.id.nav_categories:
-                fragment = new Categories();
+            case R.id.nav_movies:
+                fragment = new MoviePage();
                 break;
-            case R.id.nav_favorites:
-                fragment = new Favorites();
+            case R.id.nav_books:
+                fragment = new BookPage();
                 break;
-            case R.id.nav_recommended:
-                fragment = new Recommendations();
+            case R.id.nav_games:
+                fragment = new GamePage();
                 break;
             case R.id.nav_settings:
                 fragment = new Settings();
