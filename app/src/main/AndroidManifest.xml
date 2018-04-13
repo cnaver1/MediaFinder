@@ -19,6 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MoreInfo"
             android:label="More Info"
             android:theme="@style/AppTheme.NoActionBar"></activity>
