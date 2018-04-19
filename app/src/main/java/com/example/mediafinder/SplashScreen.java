@@ -22,18 +22,18 @@ public class SplashScreen extends AwesomeSplash{
 
 
             configSplash.setBackgroundColor(R.color.colorPrimaryDark);
-            configSplash.setAnimCircularRevealDuration(3000);
+            configSplash.setAnimCircularRevealDuration(2000);
             configSplash.setRevealFlagX(Flags.REVEAL_LEFT);
             configSplash.setRevealFlagX(Flags.REVEAL_BOTTOM);
             configSplash.setLogoSplash(R.drawable.mediafinder_logo);
 
-            configSplash.setAnimLogoSplashDuration(5000);
+            configSplash.setAnimLogoSplashDuration(3000);
             configSplash.setAnimLogoSplashTechnique(Techniques.FadeInUp);
 
             configSplash.setTitleSplash("CSC 3380 Group Project");
-            configSplash.setTitleTextColor(R.color.colorPrimary);
+            configSplash.setTitleTextColor(R.color.splashScreenFont);
             configSplash.setTitleTextSize(30f);
-            configSplash.setAnimTitleDuration(3000);
+            configSplash.setAnimTitleDuration(2000);
             configSplash.setAnimTitleTechnique(Techniques.Landing);
         }
 
