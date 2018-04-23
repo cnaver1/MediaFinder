@@ -28,7 +28,7 @@
                     android:id="@+id/nav_settings"
                     android:checkable="true"
                     android:icon="@mipmap/settings"
-                    android:title="Settings" />
+                    android:title="Credits" />
                 <item
                     android:id="@+id/nav_signout"
                     android:icon="@mipmap/logout"
