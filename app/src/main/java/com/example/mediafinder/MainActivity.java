@@ -147,6 +147,9 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_games:
                 fragment = new GamePage();
                 break;
+            case R.id.nav_nim:
+                fragment = new NimPage();
+                break;
             case R.id.nav_settings:
                 fragment = new Settings();
                 break;
