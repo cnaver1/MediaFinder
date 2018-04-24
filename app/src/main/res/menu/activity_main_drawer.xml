@@ -20,6 +20,10 @@
             android:id="@+id/nav_games"
             android:icon="@mipmap/game"
             android:title="Games" />
+        <item
+            android:id="@+id/nav_nim"
+            android:icon="@mipmap/nim"
+            android:title="Nim" />
     </group>
 
         <item android:title="Account">
@@ -28,7 +32,7 @@
                     android:id="@+id/nav_settings"
                     android:checkable="true"
                     android:icon="@mipmap/settings"
-                    android:title="Settings" />
+                    android:title="Credits" />
                 <item
                     android:id="@+id/nav_signout"
                     android:icon="@mipmap/logout"
