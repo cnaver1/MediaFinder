@@ -54,7 +54,6 @@ public class Search extends Fragment {
                 ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
-        db.getReference("media").child("1");
         final DatabaseReference ref = db.getReference("media");
         final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.searchList, list);
         lv.setAdapter(searchAdapter);

@@ -12,7 +12,7 @@ public class Movie implements Media{
     String year;
     String rating;
     String ranking;
-    String lowerCaseName;
+    public String lowerCaseName;
 
     public Movie(){}
 

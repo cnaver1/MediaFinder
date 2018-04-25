@@ -13,7 +13,7 @@ public class Game implements Media {
     String developer;
     String platform;
     String releaseDate;
-    String lowerCaseName;
+    public String lowerCaseName;
 
     public Game() {}
 
