@@ -13,7 +13,7 @@ public class Book implements Media {
     String author;
     String rating;
     String numRatings;
-    String lowerCaseName;
+    public String lowerCaseName;
 
     public Book(){}
 
