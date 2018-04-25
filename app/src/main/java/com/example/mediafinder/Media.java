@@ -8,6 +8,12 @@ import android.view.View;
 
 public interface Media {
     String getName();
+    String getType();
+    boolean isLiked();
+    void toggleLiked();
     void setResults(View view);
     void setInfo(View view);
+    void setPushId(String pushId);
+    String getID();
+
 }

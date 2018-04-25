@@ -13,6 +13,9 @@ public class Movie implements Media{
     String rating;
     String ranking;
     public String lowerCaseName;
+    String type;
+    boolean liked;
+    String pushId;
 
     public Movie(){}
 
@@ -21,7 +24,9 @@ public class Movie implements Media{
         this.year = year;
         this.rating = rating;
         this.ranking = ranking;
+        type = "Movie";
         lowerCaseName = name.toLowerCase();
+        liked = false;
     }
 
     @Override
@@ -35,13 +40,20 @@ public class Movie implements Media{
 
     public void setInfo(View view){
         ((TextView) view.findViewById(R.id.info_name)).setText(name);
-        ((TextView) view.findViewById(R.id.info_type)).setText("Movie");
+        ((TextView) view.findViewById(R.id.info_type)).setText(type);
         ((TextView) view.findViewById(R.id.info_topLine)).setText("Year Released: " + year);
         ((TextView) view.findViewById(R.id.info_middleLine)).setText("IMDB Movie Ranking: " + ranking);
         ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Rating: " + rating + "/10.0");
+    }
+    public void setPushId(String pushId){
+        this.pushId = pushId;
     }
 
     public String getYear(){return year;}
     public String getRating() {return rating;}
     public String getRanking() {return ranking;}
+    public String getType(){return type;}
+    public boolean isLiked(){return liked;}
+    public void toggleLiked(){liked = !liked;}
+    public String getID(){return pushId;}
 }
