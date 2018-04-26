@@ -44,7 +44,8 @@ public class MoreInfo extends Activity {
                         .getInstance()
                         .getReference(Constants.FIREBASE_CHILD_MEDIA).child(uid);
                 if(media.isLiked()){
-                    //mediaRef.child(media.getID()).removeValue();
+                    System.out.println(media.getName() + ": " + uid + ", " + media.getID());
+                    mediaRef.child(media.getID()).removeValue();
                 }else {
                     DatabaseReference pushRef = mediaRef.push();
                     String pushId = pushRef.getKey();

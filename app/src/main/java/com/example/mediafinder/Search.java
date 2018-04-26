@@ -170,7 +170,7 @@ public class Search extends Fragment {
                             string += lines[i] + ".";
                         line2 = bufferedReader2.readLine();
                         arr = string.split("\\(");
-                        ref.child("movies").push().setValue(new Movie(arr[0].trim(), arr[1].split("\\)")[0], line2, lines[0]));
+                        ref.child("movies").push().setValue(new Movie(arr[0].trim(), arr[1].split("\\)")[0], line2, lines[0], ""));
                         bufferedReader2.readLine();
                     }
                     bufferedReader2 = new BufferedReader(new InputStreamReader(getContext().getAssets().open("Goodreads' Best Books Ever.txt")));
@@ -183,12 +183,12 @@ public class Search extends Fragment {
                         line2 = bufferedReader2.readLine();
                         string = bufferedReader2.readLine();
                         arr = string.split("—");
-                        ref.child("books").push().setValue(new Book(lines[0], string2.split("\\)")[0], line2, arr[0].split(" ")[0], arr[1].trim().split(" ")[0]));
+                        ref.child("books").push().setValue(new Book(lines[0], string2.split("\\)")[0], line2, arr[0].split(" ")[0], arr[1].trim().split(" ")[0], ""));
                         bufferedReader2.readLine();
                     }
                     bufferedReader2 = new BufferedReader(new InputStreamReader(getContext().getAssets().open("Wikipedia's list of First Person Shooters.txt")));
                     while ((line = bufferedReader2.readLine()) != null) {
-                        ref.child("games").push().setValue(new Game(line, bufferedReader2.readLine(), bufferedReader2.readLine(),bufferedReader2.readLine()));
+                        ref.child("games").push().setValue(new Game(line, bufferedReader2.readLine(), bufferedReader2.readLine(),bufferedReader2.readLine(), ""));
                         bufferedReader2.readLine();
                     }
                     bufferedReader2.close();

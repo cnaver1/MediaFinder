@@ -16,11 +16,10 @@ public class Book implements Media {
     public String lowerCaseName;
     String type;
     boolean liked;
-    String pushId;
+    String id;
     public Book(){}
 
-
-    public Book(String name, String series, String author, String rating, String numRatings){
+    public Book(String name, String series, String author, String rating, String numRatings, String id){
         this.name = name;
         this.series = series;
         this.author = author;
@@ -29,7 +28,9 @@ public class Book implements Media {
         this.numRatings = numRatings;
         lowerCaseName = name.toLowerCase();
         liked = false;
+        this.id = id;
     }
+
     @Override
     public String getName() {
         return name;
@@ -50,7 +51,7 @@ public class Book implements Media {
         ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Rating: " + rating + "/5.00 (" + numRatings + " ratings)");
     }
     public void setPushId(String pushId){
-        this.pushId = pushId;
+        this.id = pushId;
     }
 
     public String getSeries() {return series;}
@@ -60,5 +61,5 @@ public class Book implements Media {
     public String getType(){return type;}
     public boolean isLiked(){return liked;}
     public void toggleLiked(){liked = !liked;}
-    public String getID(){return pushId;}
+    public String getID(){return id;}
 }

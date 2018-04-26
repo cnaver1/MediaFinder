@@ -150,13 +150,15 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_nim:
                 fragment = new NimPage();
                 break;
+            case R.id.Profile:
+                fragment = new ProfilePage();
+                break;
             case R.id.nav_settings:
                 fragment = new Settings();
                 break;
             case R.id.nav_signout:
                 mAuth.signOut();
                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
-
                 break;
         }
 

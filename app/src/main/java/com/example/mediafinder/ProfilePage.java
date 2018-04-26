@@ -25,6 +25,8 @@ public class ProfilePage extends Fragment {
 
         ArrayList items = new ArrayList();
 
+        public static ListView listView;
+
         @Nullable
         @Override
         public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,8 +36,9 @@ public class ProfilePage extends Fragment {
         @Override
         public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
             super.onViewCreated(view, savedInstanceState);
-            final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.profile, items);
-            ((ListView) view.findViewById(R.id.savedList)).setAdapter(searchAdapter);
+            final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.savedList, items);
+            listView = view.findViewById(R.id.savedList);
+            listView.setAdapter(searchAdapter);
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             String uid = user.getUid();
             FirebaseDatabase.getInstance().getReference("media").child(uid).addChildEventListener(new ChildEventListener() {
@@ -63,7 +66,6 @@ public class ProfilePage extends Fragment {
 
                 @Override
                 public void onChildRemoved(DataSnapshot dataSnapshot) {
-
                 }
 
                 @Override

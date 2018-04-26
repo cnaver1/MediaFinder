@@ -16,11 +16,11 @@ public class Game implements Media {
     public String lowerCaseName;
     String type;
     boolean liked;
-    String pushId;
+    String id;
 
     public Game() {}
 
-    public Game(String name, String developer, String platform, String releaseDate){
+    public Game(String name, String developer, String platform, String releaseDate, String id){
         this.name = name;
         type = "Game";
         this.developer = developer;
@@ -28,6 +28,7 @@ public class Game implements Media {
         this.releaseDate = releaseDate;
         lowerCaseName = name.toLowerCase();
         liked = false;
+        this.id = id;
     }
 
     @Override
@@ -52,7 +53,7 @@ public class Game implements Media {
         ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Platform(s): " + platform);
     }
     public void setPushId(String pushId){
-        this.pushId = pushId;
+        this.id = pushId;
     }
 
     public String getDeveloper() {return developer;}
@@ -60,5 +61,5 @@ public class Game implements Media {
     public String getReleaseDate() {return releaseDate;}
     public boolean isLiked(){return liked;}
     public void toggleLiked(){liked = !liked;}
-    public String getID(){return pushId;}
+    public String getID(){return id;}
 }
