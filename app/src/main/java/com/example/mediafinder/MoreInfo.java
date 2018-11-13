@@ -23,43 +23,46 @@ public class MoreInfo extends Activity {
 
     public static Media media;
 
+
+FirebaseAuth mAuth;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.more_info);
         media.setInfo(findViewById(android.R.id.content));
 
-       Button likeButton = (Button) findViewById(R.id.likeButton);
-       if(media.isLiked())
-           likeButton.setText("Unlike");
-       else
-           likeButton.setText("Like");
-        likeButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View view) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                String uid = user.getUid();
-                DatabaseReference mediaRef = FirebaseDatabase
-                        .getInstance()
-                        .getReference(Constants.FIREBASE_CHILD_MEDIA).child(uid);
-                if(media.isLiked()){
-                    System.out.println(media.getName() + ": " + uid + ", " + media.getID());
-                    mediaRef.child(media.getID()).removeValue();
-                }else {
-                    DatabaseReference pushRef = mediaRef.push();
-                    String pushId = pushRef.getKey();
-                    media.setPushId(pushId);
-                    media.toggleLiked();
-                    pushRef.setValue(media);
+            final Button likeButton = (Button) findViewById(R.id.likeButton);
+            if (media.isLiked())
+                likeButton.setText("Unlike");
+            else
+                likeButton.setText("Like");
+            likeButton.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uid = user.getUid();
+                    DatabaseReference mediaRef = FirebaseDatabase
+                            .getInstance()
+                            .getReference(Constants.FIREBASE_CHILD_MEDIA).child(uid);
+                    if (media.isLiked()) {
+                        System.out.println(media.getName() + ": " + uid + ", " + media.getID());
+                        mediaRef.child(media.getID()).removeValue();
+                    } else {
+                        DatabaseReference pushRef = mediaRef.push();
+                        String pushId = pushRef.getKey();
+                        media.setPushId(pushId);
+                        media.toggleLiked();
+                        pushRef.setValue(media);
+                    }
+
+
+                    Toast.makeText(MoreInfo.this, "Saved!", Toast.LENGTH_SHORT).show();
+
                 }
+            });
 
-
-                Toast.makeText(MoreInfo.this, "Saved!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
     }
-
     }
 

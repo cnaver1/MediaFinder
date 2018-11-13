@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +33,10 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 public class LoginActivity extends AppCompatActivity {
 
-    SignInButton button;
-    private FirebaseAuth mAuth;
+ SignInButton button;
+
+
+ private FirebaseAuth mAuth;
     private final static int RC_SIGN_IN = 2;
 
     GoogleApiClient mGoogleApiClient;
@@ -43,19 +46,16 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
         mAuth.addAuthStateListener(mAuthListener);
     }
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Sets on-click for sign in button
         mAuth = FirebaseAuth.getInstance();
-
         button = (SignInButton) findViewById(R.id.sign_in_button);
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -69,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
+        // If users has signed in go to main activity
                 if(firebaseAuth.getCurrentUser() != null) {
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 }
@@ -81,8 +81,6 @@ public class LoginActivity extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
-
-
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
             @Override
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
@@ -91,17 +89,13 @@ public class LoginActivity extends AppCompatActivity {
         })
                 .addApi(Auth.GOOGLE_SIGN_IN_API,gso)
                 .build();
-
     }
-
 
 
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
-
-
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -139,7 +133,7 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
 
-                        // ...
+
                     }
                 });
     }

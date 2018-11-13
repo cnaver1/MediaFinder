@@ -31,28 +31,19 @@ import com.google.firebase.auth.FirebaseAuth;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Button button;
     FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
-    GoogleApiClient mGoogleApiClient;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-
         mAuth = FirebaseAuth.getInstance();
-
-        if (mAuth.getCurrentUser() == null) {
-            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-        } else {
-            Toast.makeText(MainActivity.this, "Welcome to MediaFinder "+mAuth.getCurrentUser().getDisplayName()+"!", Toast.LENGTH_SHORT).show();
-
+       // Displays a certain nav menu depending if the users is logged.
+        if(mAuth.getCurrentUser() != null) {
+            setContentView(R.layout.activity_main);
         }
-
+        else{
+            setContentView(R.layout.activity_guest);
+        }
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -70,15 +61,14 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new Search()).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
 
+        //The is user is logged in the pulls their: name, email, and photo from their google
+        // account and displays is in the nav menu
 
         if(mAuth.getCurrentUser() != null) {
 
             String userName = mAuth.getCurrentUser().getDisplayName();
             String userEmail = mAuth.getCurrentUser().getEmail();
             String userPhoto = mAuth.getCurrentUser().getPhotoUrl().toString();
-
-
-
 
             NavigationView nav = (NavigationView) findViewById(R.id.nav_view);
             View headerView = navigationView.getHeaderView(0);
@@ -94,11 +84,8 @@ public class MainActivity extends AppCompatActivity
             Glide.with(getApplicationContext()).load(userPhoto)
                     .thumbnail(0.5f)
                     .crossFade()
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop()
                     .into(userPic);
-
-
-
         }
     }
 
@@ -133,7 +120,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
-        switch (id){
+
+        switch (id) {
             default:
             case R.id.nav_search:
                 fragment = new Search();
@@ -147,9 +135,6 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_games:
                 fragment = new GamePage();
                 break;
-            case R.id.nav_nim:
-                fragment = new NimPage();
-                break;
             case R.id.Profile:
                 fragment = new ProfilePage();
                 break;
@@ -158,7 +143,10 @@ public class MainActivity extends AppCompatActivity
                 break;
             case R.id.nav_signout:
                 mAuth.signOut();
-                startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, MainActivity.class));
+                break;
+            case R.id.nav_signin:
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
         }
 
@@ -168,9 +156,9 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
         }
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
+
