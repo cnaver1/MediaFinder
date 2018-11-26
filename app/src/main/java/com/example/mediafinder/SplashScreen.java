@@ -30,7 +30,7 @@ public class SplashScreen extends AwesomeSplash{
             configSplash.setAnimLogoSplashDuration(3000);
             configSplash.setAnimLogoSplashTechnique(Techniques.FadeInUp);
 
-            configSplash.setTitleSplash("CSC 3380 Group Project");
+            configSplash.setTitleSplash("CSC 4330 Group Project");
             configSplash.setTitleTextColor(R.color.splashScreenFont);
             configSplash.setTitleTextSize(30f);
             configSplash.setAnimTitleDuration(2000);
