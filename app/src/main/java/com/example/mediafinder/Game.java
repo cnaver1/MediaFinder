@@ -1,6 +1,7 @@
 package com.example.mediafinder;
 
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
@@ -9,10 +10,10 @@ import android.widget.TextView;
 
 public class Game implements Media {
 
-    String name;
-    String developer;
-    String platform;
-    String releaseDate;
+    String genre;
+    String poster;
+    String price;
+    String title;
     public String lowerCaseName;
     String type;
     boolean liked;
@@ -20,45 +21,45 @@ public class Game implements Media {
 
     public Game() {}
 
-    public Game(String name, String developer, String platform, String releaseDate, String id){
-        this.name = name;
-        type = "Game";
-        this.developer = developer;
-        this.platform = platform;
-        this.releaseDate = releaseDate;
-        lowerCaseName = name.toLowerCase();
+    public Game(String genre, String poster, String price, String title, String type, String id){
+        this.genre = genre;
+        this.type = type;
+        this.poster = poster;
+        this.price = price;
+        this.title = title;
+        lowerCaseName = title.toLowerCase();
         liked = false;
         this.id = id;
     }
 
     @Override
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getType(){return type;}
 
     @Override
     public void setResults(View view) {
-        ((TextView) view.findViewById(R.id.nameText)).setText(name);
+        ((TextView) view.findViewById(R.id.nameText)).setText(title);
         ((TextView) view.findViewById(R.id.mediaText)).setText(type);
     }
 
     @Override
     public void setInfo(View view) {
-        ((TextView) view.findViewById(R.id.info_name)).setText(name);
-        ((TextView) view.findViewById(R.id.info_type)).setText("Game");
-        ((TextView) view.findViewById(R.id.info_topLine)).setText("Release Date: " + releaseDate);
-        ((TextView) view.findViewById(R.id.info_middleLine)).setText("Developer: " + developer);
-        ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Platform(s): " + platform);
+        ((TextView) view.findViewById(R.id.info_name)).setText(title);
+        ((TextView) view.findViewById(R.id.info_type)).setText(type);
+        ((TextView) view.findViewById(R.id.info_topLine)).setText("Genre: " + genre);
+        ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Price: " + price);
+
     }
     public void setPushId(String pushId){
         this.id = pushId;
     }
 
-    public String getDeveloper() {return developer;}
-    public String getPlatform() {return platform;}
-    public String getReleaseDate() {return releaseDate;}
+    public String getGenre() {return genre;}
+    public String getPrice() {return price;}
+    public String getPoster() {return poster;}
     public boolean isLiked(){return liked;}
     public void toggleLiked(){liked = !liked;}
     public String getID(){return id;}

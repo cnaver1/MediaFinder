@@ -54,7 +54,7 @@ public class Search extends Fragment {
                 ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         });
-        final DatabaseReference ref = db.getReference("media");
+        final DatabaseReference ref = db.getReference("Media");
         final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.searchList, list);
         lv.setAdapter(searchAdapter);
         criteria = view.findViewById(R.id.criteria);
@@ -64,8 +64,8 @@ public class Search extends Fragment {
             @Override
             public void onClick(View view) {
                 searchAdapter.clear();
-                final String search = criteria.getText().toString().trim().toLowerCase();
-                ref.child("movies").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
+                final String search = criteria.getText().toString().trim();
+                ref.child("Movies").orderByChild("title").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
 
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -92,7 +92,7 @@ public class Search extends Fragment {
 
                     }
                 });
-                ref.child("books").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
+                ref.child("Books").orderByChild("title").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
 
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -119,7 +119,7 @@ public class Search extends Fragment {
 
                     }
                 });
-                ref.child("games").orderByChild("lowerCaseName").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
+                ref.child("Games").orderByChild("title").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
 
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
@@ -150,7 +150,7 @@ public class Search extends Fragment {
         });
 
         //This is the code to correctly upload the media to the firebase database
-        view.findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
+       /* view.findViewById(R.id.refresh).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ref.removeValue();
@@ -200,6 +200,6 @@ public class Search extends Fragment {
                             "Error reading file");
                 }
             }
-        });
+        });*/
     }
 }

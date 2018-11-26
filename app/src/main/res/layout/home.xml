@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="383dp"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="0dp">
+
+        <ImageView
+            android:id="@+id/searchButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignBottom="@+id/criteria"
+            android:layout_toStartOf="@+id/criteria"
+            android:src="@android:drawable/ic_search_category_default"
+            app:layout_constraintBottom_toTopOf="@+id/textView10"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.615" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="21dp"
+            android:layout_above="@+id/imageView8"
+            android:layout_alignParentStart="true"
+            android:text="Movies"
+            app:layout_constraintBottom_toTopOf="@+id/imageView7"
+            app:layout_constraintEnd_toStartOf="@+id/imageView7"
+            app:layout_constraintHorizontal_bias="0.131"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView3"
+            android:layout_alignParentStart="true"
+            android:text="Books"
+            app:layout_constraintBottom_toTopOf="@+id/imageView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/imageView10"
+            android:layout_alignEnd="@+id/textView10"
+            android:text="Games"
+            app:layout_constraintBottom_toTopOf="@+id/imageView10"
+            tools:layout_editor_absoluteX="0dp" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_above="@+id/imageView10"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="21dp"
+            app:srcCompat="@drawable/sk_it"
+            tools:layout_editor_absoluteY="219dp" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignTop="@+id/imageView3"
+            android:layout_toEndOf="@+id/imageView3"
+            app:srcCompat="@drawable/hunger_games"
+            tools:layout_editor_absoluteX="84dp"
+            tools:layout_editor_absoluteY="219dp" />
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/imageView5"
+            app:srcCompat="@drawable/killing_floor"
+            tools:layout_editor_absoluteX="218dp"
+            tools:layout_editor_absoluteY="227dp" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignTop="@+id/imageView8"
+            android:layout_toEndOf="@+id/imageView8"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/chicken_little"
+            tools:layout_editor_absoluteY="81dp" />
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_above="@+id/textView11"
+            android:layout_alignStart="@+id/textView14"
+            app:layout_constraintBottom_toTopOf="@+id/imageView5"
+            app:srcCompat="@drawable/avengers"
+            tools:layout_editor_absoluteX="88dp" />
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/imageView7"
+            app:srcCompat="@drawable/insidious"
+            tools:layout_editor_absoluteX="218dp"
+            tools:layout_editor_absoluteY="89dp" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            app:layout_constraintEnd_toStartOf="@+id/imageView11"
+            app:srcCompat="@drawable/left_4_dead"
+            tools:layout_editor_absoluteY="365dp" />
+
+        <ImageView
+            android:id="@+id/imageView11"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentBottom="true"
+            android:layout_toEndOf="@+id/imageView10"
+            app:layout_constraintEnd_toStartOf="@+id/imageView12"
+            app:srcCompat="@drawable/red_dead_redemption_2"
+            tools:layout_editor_absoluteY="365dp" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:srcCompat="@drawable/resident_evil_7"
+            tools:layout_editor_absoluteX="226dp"
+            tools:layout_editor_absoluteY="373dp" />
+
+        <AutoCompleteTextView
+            android:id="@+id/criteria"
+            android:layout_width="325dp"
+            android:layout_height="50dp"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/textView11"
+            android:hint="Search"
+            android:textAlignment="viewStart"
+            app:layout_constraintBottom_toTopOf="@+id/rec_text"
+            app:layout_constraintStart_toEndOf="@+id/searchButton" />
+
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

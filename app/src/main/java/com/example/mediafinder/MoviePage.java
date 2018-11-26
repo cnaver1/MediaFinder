@@ -21,25 +21,27 @@ import java.util.ArrayList;
 
 public class MoviePage extends Fragment {
 
-    ArrayList<String> items = new ArrayList<>();
 
-
+    ArrayList items = new ArrayList();
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.movies, container, false);
-        return view;
+        return inflater.inflate(R.layout.movies, container, false);
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.searchList, items);
+        final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.movieList, items);
         ((ListView) view.findViewById(R.id.movieList)).setAdapter(searchAdapter);
-        FirebaseDatabase.getInstance().getReference("media").child("movies").orderByChild("lowerCaseName").addChildEventListener(new ChildEventListener() {
+        FirebaseDatabase.getInstance().getReference("Media").child("Movies").orderByChild("Title").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 searchAdapter.add(dataSnapshot.getValue(Movie.class));
+
+
+
             }
 
             @Override

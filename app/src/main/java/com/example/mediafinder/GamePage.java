@@ -34,7 +34,7 @@ public class GamePage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.gameList, items);
         ((ListView) view.findViewById(R.id.gameList)).setAdapter(searchAdapter);
-        FirebaseDatabase.getInstance().getReference("media").child("games").orderByChild("lowerCaseName").addChildEventListener(new ChildEventListener() {
+        FirebaseDatabase.getInstance().getReference("Media").child("Games").orderByChild("lowerCaseName").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 searchAdapter.add(dataSnapshot.getValue(Game.class));

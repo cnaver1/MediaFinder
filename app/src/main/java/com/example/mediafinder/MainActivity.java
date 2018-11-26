@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
+import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new Search()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content_main, new HomePage()).commit();
         navigationView.getMenu().getItem(0).setChecked(true);
 
         //The is user is logged in the pulls their: name, email, and photo from their google
@@ -86,6 +87,7 @@ public class MainActivity extends AppCompatActivity
                     .crossFade()
                     .diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop()
                     .into(userPic);
+
         }
     }
 
@@ -123,6 +125,9 @@ public class MainActivity extends AppCompatActivity
 
         switch (id) {
             default:
+            case R.id.nav_home:
+                fragment = new HomePage();
+                break;
             case R.id.nav_search:
                 fragment = new Search();
                 break;
@@ -135,7 +140,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_games:
                 fragment = new GamePage();
                 break;
-            case R.id.Profile:
+            case R.id.nav_profile:
                 fragment = new ProfilePage();
                 break;
             case R.id.nav_settings:
@@ -148,6 +153,8 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_signin:
                 startActivity(new Intent(MainActivity.this, LoginActivity.class));
                 break;
+
+
         }
 
         if(fragment != null) {

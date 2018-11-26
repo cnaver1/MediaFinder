@@ -11,6 +11,7 @@ import android.widget.ListView;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
@@ -22,11 +23,11 @@ import java.util.ArrayList;
 public class BookPage extends Fragment {
 
     ArrayList items = new ArrayList();
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.books, container, false);
+
     }
 
     @Override
@@ -34,7 +35,7 @@ public class BookPage extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.bookList, items);
         ((ListView) view.findViewById(R.id.bookList)).setAdapter(searchAdapter);
-        FirebaseDatabase.getInstance().getReference("media").child("books").orderByChild("lowerCaseName").addChildEventListener(new ChildEventListener() {
+        FirebaseDatabase.getInstance().getReference("Media").child("Books").orderByChild("lowerCaseName").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 searchAdapter.add(dataSnapshot.getValue(Book.class));

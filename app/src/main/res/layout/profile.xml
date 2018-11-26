@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.mediafinder.Profile">
+    tools:context="com.example.mediafinder.ProfilePage">
     <ListView
         android:id="@+id/savedList"
         android:layout_width="match_parent"

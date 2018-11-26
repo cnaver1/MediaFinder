@@ -3,62 +3,67 @@ package com.example.mediafinder;
 import android.view.View;
 import android.widget.TextView;
 
-/**
- * Created by thevs on 4/10/2018.
- */
 
+/**
+ * Book creates the fields in the book class. Allowing them to be set in the SearchList and MoreInfo.
+ */
 public class Book implements Media {
-    String name;
-    String series;
     String author;
-    String rating;
-    String numRatings;
-    public String lowerCaseName;
+    String genre;
+    String poster;
+    String title;
     String type;
-    boolean liked;
     String id;
+    public String lowerCaseName;
+    boolean liked;
+
     public Book(){}
 
-    public Book(String name, String series, String author, String rating, String numRatings, String id){
-        this.name = name;
-        this.series = series;
+    public Book(String author,String genre,String poster,String title,String type, String id){
         this.author = author;
-        this.rating = rating;
-        type = "Book";
-        this.numRatings = numRatings;
-        lowerCaseName = name.toLowerCase();
-        liked = false;
+        this.genre = genre;
+        this.poster = poster;
+        this.title = title;
         this.id = id;
+        this.type = type;
+        lowerCaseName = title.toLowerCase();
+        liked = false;
     }
 
     @Override
-    public String getName() {
-        return name;
-    }
+    public String getTitle(){return title;}
+    public String getType(){return type;}
 
+
+
+
+//Sets the Title and Type to the searchList
     @Override
     public void setResults(View view) {
-        ((TextView) view.findViewById(R.id.nameText)).setText(name);
+        ((TextView) view.findViewById(R.id.nameText)).setText(title);
         ((TextView) view.findViewById(R.id.mediaText)).setText(type);
     }
 
+
+//Sets the title, type, author, genre ,and poster to the moreInfo page.
+
     @Override
     public void setInfo(View view) {
-        ((TextView) view.findViewById(R.id.info_name)).setText(name);
-        ((TextView) view.findViewById(R.id.info_type)).setText("Book");
+        ((TextView) view.findViewById(R.id.info_name)).setText(title);
+        ((TextView) view.findViewById(R.id.info_type)).setText(type);
         ((TextView) view.findViewById(R.id.info_topLine)).setText("Author: " + author);
-        ((TextView) view.findViewById(R.id.info_middleLine)).setText("Series: " + series);
-        ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Rating: " + rating + "/5.00 (" + numRatings + " ratings)");
+        ((TextView) view.findViewById(R.id.info_middleLine)).setText("Genre: " + genre);
+        //((TextView) view.findViewById(R.id.info_bottomLine)).setText("Poster"  + Poster);
     }
+
     public void setPushId(String pushId){
+
         this.id = pushId;
     }
 
-    public String getSeries() {return series;}
-    public String getAuthor() {return author;}
-    public String getRating() {return rating;}
-    public String getNumRatings() {return numRatings;}
-    public String getType(){return type;}
+    public String getAuthor(){return author;}
+    public String getGenre(){return genre;}
+    public String getPoster(){return poster;}
     public boolean isLiked(){return liked;}
     public void toggleLiked(){liked = !liked;}
     public String getID(){return id;}

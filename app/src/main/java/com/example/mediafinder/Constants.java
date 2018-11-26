@@ -5,10 +5,10 @@ import android.os.Bundle;
 
 public class Constants {
 
-    public static final String FIREBASE_CHILD_MEDIA = "media";
-    public static final String FIREBASE_CHILD_MOVIE = "movies";
-    public static final String FIREBASE_CHILD_GAMES = "games";
-    public static final String FIREBASE_CHILD_BOOKS = "books";
+    public static final String FIREBASE_CHILD_MEDIA = "Media";
+    public static final String FIREBASE_CHILD_MOVIE = "Movies";
+    public static final String FIREBASE_CHILD_GAMES = "Games";
+    public static final String FIREBASE_CHILD_BOOKS = "Books";
 
     }
 
