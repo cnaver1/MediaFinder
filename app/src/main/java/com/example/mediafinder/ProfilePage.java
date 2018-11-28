@@ -27,12 +27,14 @@ public class ProfilePage extends Fragment {
 
     public static ListView listView;
 
+//Called to have the fragment instantiate its user interface view
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.profile, container, false);
     }
 
+//Called immediately after onCreateView; This gives subclasses a chance to initialize themselves once they know their view hierarchy has been completely created
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -43,6 +45,7 @@ public class ProfilePage extends Fragment {
         String uid = user.getUid();
         FirebaseDatabase.getInstance().getReference("Media").child(uid).addChildEventListener(new ChildEventListener() {
             @Override
+		//This method is triggered when a new child is added to the location to which this listener was added
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 switch((String) dataSnapshot.child("type").getValue()){
                     case "Game":
@@ -55,7 +58,6 @@ public class ProfilePage extends Fragment {
                         searchAdapter.add(dataSnapshot.getValue(Movie.class));
                         break;
                 }
-
 
             }
 

@@ -13,7 +13,7 @@ import com.viksaa.sssplash.lib.model.ConfigSplash;
 
 public class SplashScreen extends AwesomeSplash{
 
-
+//Initilized the splash screen
     @Override
     public void initSplash(ConfigSplash configSplash) {
 

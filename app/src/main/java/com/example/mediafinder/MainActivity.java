@@ -34,11 +34,12 @@ public class MainActivity extends AppCompatActivity
 
     FirebaseAuth mAuth;
 
+//Called to do initial creation of a fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-       // Displays a certain nav menu depending if the users is logged.
+	// Displays a certain nav menu depending if the users is logged.
         if(mAuth.getCurrentUser() != null) {
             setContentView(R.layout.activity_main);
         }
@@ -91,6 +92,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+//Called when the activity has detected the user's press of the back key.
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -101,11 +103,12 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+// Handle action bar item clicks here. The action bar will
+// automatically handle clicks on the Home/Up button, so long
+// as you specify a parent activity in AndroidManifest.xml.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+        
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -116,10 +119,10 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+//Called when an item in the navigation menu is selected.
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         Fragment fragment = null;
 

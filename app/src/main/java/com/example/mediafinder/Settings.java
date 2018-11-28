@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 public class Settings extends Fragment {
 
+//Called to have the fragment instantiate its user interface view
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -21,6 +22,7 @@ public class Settings extends Fragment {
 
     }
 
+//Called immediately after onCreateView; This gives subclasses a chance to initialize themselves once they know their view hierarchy has been completely created
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

@@ -23,19 +23,22 @@ import java.util.ArrayList;
 public class BookPage extends Fragment {
 
     ArrayList items = new ArrayList();
+	
+//Called to have the fragment instantiate its user interface view
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.books, container, false);
-
     }
 
+//Called immediately after onCreateView; This gives subclasses a chance to initialize themselves once they know their view hierarchy has been completely created
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final SearchAdapter searchAdapter = new SearchAdapter(this.getContext(), R.id.bookList, items);
         ((ListView) view.findViewById(R.id.bookList)).setAdapter(searchAdapter);
         FirebaseDatabase.getInstance().getReference("Media").child("Books").orderByChild("lowerCaseName").addChildEventListener(new ChildEventListener() {
+		//This method is triggered when a new child is added to the location to which this listener was added
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 searchAdapter.add(dataSnapshot.getValue(Book.class));

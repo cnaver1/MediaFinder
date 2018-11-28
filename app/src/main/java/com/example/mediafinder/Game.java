@@ -19,8 +19,18 @@ public class Game implements Media {
     boolean liked;
     String id;
 
+//Default constructor for the game object
     public Game() {}
 
+/**
+ * Parameterized constructor for the Game object.
+ * genre: Genre(s) of the game
+ * poster: Poster/cover of the game
+ * price: Price of the game
+ * title: Title of the game
+ * type: 
+ * id: 
+ */
     public Game(String genre, String poster, String price, String title, String type, String id){
         this.genre = genre;
         this.type = type;
@@ -32,19 +42,21 @@ public class Game implements Media {
         this.id = id;
     }
 
+//Returns the title of the game object
     @Override
-    public String getTitle() {
-        return title;
-    }
-
+    public String getTitle() {return title;}
+	
+//Returns the type of the game object
     public String getType(){return type;}
 
+//Sets the results
     @Override
     public void setResults(View view) {
         ((TextView) view.findViewById(R.id.nameText)).setText(title);
         ((TextView) view.findViewById(R.id.mediaText)).setText(type);
     }
 
+//Sets the info
     @Override
     public void setInfo(View view) {
         ((TextView) view.findViewById(R.id.info_name)).setText(title);
@@ -53,14 +65,25 @@ public class Game implements Media {
         ((TextView) view.findViewById(R.id.info_bottomLine)).setText("Price: " + price);
 
     }
-    public void setPushId(String pushId){
-        this.id = pushId;
-    }
+	
+//Sets the pushID
+    public void setPushId(String pushId){this.id = pushId;}
 
+//Returns the genre(s) of the game object
     public String getGenre() {return genre;}
+	
+//Returns the price of the game object
     public String getPrice() {return price;}
+	
+//Returns the poster of the game object
     public String getPoster() {return poster;}
+	
+//Returns whether the game object is liked or not
     public boolean isLiked(){return liked;}
+	
+//Toggles the liked boolean
     public void toggleLiked(){liked = !liked;}
+	
+//Returns the ID of the game object
     public String getID(){return id;}
 }

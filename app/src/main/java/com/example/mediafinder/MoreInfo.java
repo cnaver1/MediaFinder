@@ -24,6 +24,7 @@ public class MoreInfo extends Activity {
 
     public static Media media;
 
+//Called to do initial creation of a fragment
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class MoreInfo extends Activity {
         else
             likeButton.setText("Like");
         likeButton.setOnClickListener(new View.OnClickListener() {
-
+		//Called when a view has been clicked
             @Override
             public void onClick(View view) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

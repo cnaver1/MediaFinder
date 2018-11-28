@@ -37,18 +37,21 @@ public class Search extends Fragment {
     ListView lv;
     AutoCompleteTextView criteria;
 
+//Called to have the fragment instantiate its user interface view
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.search, container, false);
     }
 
+//Called immediately after onCreateView; This gives subclasses a chance to initialize themselves once they know their view hierarchy has been completely created
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         final Context context = this.getContext();
         lv = view.findViewById(R.id.searchList);
         view.findViewById(R.id.background).setOnClickListener(new View.OnClickListener() {
+		//Called when a view has been clicked.
             @Override
             public void onClick(View view) {
                 ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -61,12 +64,13 @@ public class Search extends Fragment {
 
         //This is the code that searches for the media based off of the entered text
         view.findViewById(R.id.searchButton).setOnClickListener(new View.OnClickListener() {
+		//Called when a view has been clicked.
             @Override
             public void onClick(View view) {
                 searchAdapter.clear();
                 final String search = criteria.getText().toString().trim();
                 ref.child("Movies").orderByChild("title").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
-
+				//This method is triggered when a new child is added to the location to which this listener was added
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         searchAdapter.add(dataSnapshot.getValue(Movie.class));
@@ -93,7 +97,7 @@ public class Search extends Fragment {
                     }
                 });
                 ref.child("Books").orderByChild("title").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
-
+				//This method is triggered when a new child is added to the location to which this listener was added
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         searchAdapter.add(dataSnapshot.getValue(Book.class));
@@ -120,7 +124,7 @@ public class Search extends Fragment {
                     }
                 });
                 ref.child("Games").orderByChild("title").startAt(search).endAt(search + "\uf8ff").addChildEventListener(new ChildEventListener() {
-
+				//This method is triggered when a new child is added to the location to which this listener was added
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                         searchAdapter.add(dataSnapshot.getValue(Game.class));

@@ -42,23 +42,24 @@ public class LoginActivity extends AppCompatActivity {
     GoogleApiClient mGoogleApiClient;
     FirebaseAuth.AuthStateListener mAuthListener;
 
-
+//Called after onCreate when the activity had been stopped, but is now again being displayed to the user
     @Override
     protected void onStart() {
         super.onStart();
         mAuth.addAuthStateListener(mAuthListener);
     }
 
+//Called to do initial creation of a fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Sets on-click for sign in button
         mAuth = FirebaseAuth.getInstance();
         button = (SignInButton) findViewById(R.id.sign_in_button);
         button.setOnClickListener(new View.OnClickListener() {
 
+		//Sets on-click for sign in button
             @Override
             public void onClick(View view) {
                 Auth.GoogleSignInApi.signOut(mGoogleApiClient);
@@ -67,9 +68,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
+			
+		//If users has signed in go to main activity
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-        // If users has signed in go to main activity
                 if(firebaseAuth.getCurrentUser() != null) {
                     startActivity(new Intent(LoginActivity.this,MainActivity.class));
                 }
@@ -83,6 +85,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mGoogleApiClient = new GoogleApiClient.Builder(this).enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
             @Override
+		//Called when there was an error connecting the client to the service.
             public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
                 Toast.makeText(LoginActivity.this,"Something went wrong",Toast.LENGTH_SHORT).show();
             }
@@ -91,12 +94,13 @@ public class LoginActivity extends AppCompatActivity {
                 .build();
     }
 
-
+//Called when the client is signing in to the service
     private void signIn() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
+	//Called when an activity you launched exits, giving you the requestCode you started it with
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -115,10 +119,12 @@ public class LoginActivity extends AppCompatActivity {
             }
         }}
 
+//Called to authenticate firebase with Google account information
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+				//Called when the Task completes.
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
