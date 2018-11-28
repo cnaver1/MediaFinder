@@ -1,2 +1,2 @@
 # MediaFinder
-CSC 3380 MediaFinder Project
+CSC 4330 MediaFinder Project
