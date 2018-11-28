@@ -18,6 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Created by thevs on 2/28/2018.
+ * The Book Page uses the book class to get the book parameters from the database
  */
 
 public class BookPage extends Fragment {

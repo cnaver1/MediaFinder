@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 /**
  * Created by cameron on 11/24/18.
+ * This is the homepage which includes the search bar and recommendations
  */
 
 public class HomePage extends Fragment {

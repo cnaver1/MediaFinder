@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by thevs on 2/28/2018.
+ * The Game Page uses the Game class to get the Game parameters from the database
  */
 
 public class GamePage extends Fragment {

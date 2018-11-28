@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 /**
  * Created by thevs on 2/28/2018.
+ * The Movie Page uses the  Movie to get the Movie parameters from the database
  */
 
 public class MoviePage extends Fragment {

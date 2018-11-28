@@ -18,6 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by thevs on 4/10/2018.
+ * This is the page that displays more info about the media type
  */
 
 public class MoreInfo extends Activity {
