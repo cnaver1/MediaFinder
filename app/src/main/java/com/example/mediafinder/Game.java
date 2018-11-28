@@ -28,8 +28,8 @@ public class Game implements Media {
  * poster: Poster/cover of the game
  * price: Price of the game
  * title: Title of the game
- * type: 
- * id: 
+ * type: Type of the media, i.e. game is "game"
+ * id: Unique id that identifies the specific media title
  */
     public Game(String genre, String poster, String price, String title, String type, String id){
         this.genre = genre;

@@ -26,8 +26,8 @@ public class Book implements Media {
  * genre: Genre(s) of the book
  * poster: Poster/cover of the book
  * title: Title of the book
- * type: 
- * id: 
+ * type: Type of the media, i.e. book has "book"
+ * id: Unique id that identifies the specific media title
  */
     public Book(String author,String genre,String poster,String title,String type, String id){
         this.author = author;

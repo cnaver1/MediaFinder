@@ -29,8 +29,8 @@ public class Movie implements Media{
  * poster: Poster/cover of the game
  * title: Title of the game
  * year: Year the movie was released
- * type: 
- * id: 
+ * type: Type of the media, i.e. movie is "movie"
+ * id: Unique id that identifies the specific media title
  */
     public Movie(String genre, String plot, String poster, String title, String year,String type, String id){
         this.genre = genre;
